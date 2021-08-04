@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: reconciler
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: reconciler
+rules:
+  - apiGroups: ['*']
+    resources: ['*']
+    verbs: ['*']
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: reconciler
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: reconciler
+subjects:
+  - kind: ServiceAccount
+    name: reconciler

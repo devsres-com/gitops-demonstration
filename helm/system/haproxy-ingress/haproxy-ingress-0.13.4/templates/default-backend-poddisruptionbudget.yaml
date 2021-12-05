@@ -1,0 +1,13 @@
+{{- if .Values.defaultBackend.enabled -}}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+    {{- include "haproxy-ingress.defaultBackend.labels" . | nindent 4 }}
+  name: {{ include "haproxy-ingress.defaultBackend.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "haproxy-ingress.defaultBackend.selectorLabels" . | nindent 6 }}
+  minAvailable: {{ .Values.defaultBackend.minAvailable }}
+{{- end }}

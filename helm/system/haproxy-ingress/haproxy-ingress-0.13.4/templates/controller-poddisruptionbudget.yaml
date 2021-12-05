@@ -1,0 +1,11 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+    {{- include "haproxy-ingress.labels" . | nindent 4 }}
+  name: {{ include "haproxy-ingress.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "haproxy-ingress.selectorLabels" . | nindent 6 }}
+  minAvailable: {{ .Values.controller.minAvailable }}

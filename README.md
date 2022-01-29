@@ -29,3 +29,32 @@ Como aprender a usar o ArgoCD (mas não o jeito de usar o Argocd!)
 ```
 argocd app create guestbook --repo https://github.com/devsres-com/gitops-demonstration.git --path argocd/manifests/guestbook/ --dest-namespace argocd-guestbook --sync-option CreateNamespace=true --dest-name in-cluster
 ```
+
+
+### Usando Applications do tipo Helm
+
+O maior problema de usar Helm charts como Applications do Argocd é o fato de que, se você usar um arquivo de configuração **values.yaml** para o seu chart, tanto o **Chart** quanto o **values.yaml** precisam estar **no mesmo repositório Git**.
+
+Um caso de uso relativamente simples seria usar um repositório Helm remoto e um Git apenas para armazenar os valores, mas o ArgoCD nunca suportou e aparentemente nunca irá suportar:
+
+> Values files must be in the same git repository as the Helm chart. The files can be in a different location in which case it can be accessed using a relative path relative to the root directory of the Helm chart.
+> (https://argo-cd.readthedocs.io/en/stable/user-guide/helm/#values-files)
+
+> You should be able to configure a values file from the UI that is a URL itself. Have you tried that?
+> It's unlikely we'll be able to support both Git+Helm repo, but you could also use a requirements.yaml in a Git repo to do this.
+> (https://github.com/argoproj/argo-cd/issues/2789#issuecomment-560496612)
+
+
+#### Links simbólicos não funcionam
+
+Você pode ficar tentado a criar um layout de pastas da seguinte forma:
+
+```
+helm/system/haproxy-ingress
+|-- haproxy-ingress -> haproxy-ingress-0.13.4
+|-- haproxy-ingress-0.13.4
+```
+
+Criar um objeto Application apontando para o link simbólico haproxy-ingress **não irá funcionar**. Logo, a única maneira de versionar é literalmente despejar o helm chart inteiro no diretório.
+
+

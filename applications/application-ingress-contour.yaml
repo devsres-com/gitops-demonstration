@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: bitnami/contour 
+    chart: contour 
     repoURL: https://charts.bitnami.com/bitnami 
     targetRevision: 7.3.3
   syncPolicy:

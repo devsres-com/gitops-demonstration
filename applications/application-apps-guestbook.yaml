@@ -13,7 +13,7 @@ spec:
       jsonnet: {}
       recurse: true
     path: manifests/guestbook
-    repoURL: git@github.com:devsres-com/gitops-demonstration.git
+    repoURL: https://github.com/devsres-com/gitops-demonstration.git
   syncPolicy:
     automated: {}
     syncOptions:

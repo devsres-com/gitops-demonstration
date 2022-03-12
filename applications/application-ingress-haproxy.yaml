@@ -14,8 +14,10 @@ spec:
     targetRevision: 0.13.6 
     helm:
       values: |
-        controller.ingressClassResource: enabled
-        controller.ingressClassResource: default	
+        controller:
+          ingressClassResource: "enabled"
+        controller:
+          ingressClassResource: "default" 	
   syncPolicy:
     automated: 
       prune: true

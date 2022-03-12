@@ -1,4 +1,33 @@
-# GitOps
+# GitOps Demonstration
+
+Este repositório é o que eu vou usar para povoar meus clusters EKS das [lives do Twitch](https://www.twitch.tv/marcelo_devsres).
+
+# GitOps TL;DR
+
+* Instale o Argocd:
+```
+kubectl create namespace argocd 
+kubectl -n argocd create -f argocd
+``` 
+
+* Cadastre este repositório Git no Argocd para fazer o deploy das **Applications**:
+```
+# Fui obrigado a usar Kustomize aqui.
+# Ensino sobre isso outro dia.
+$ kubectl kustomize --load-restrictor LoadRestrictionsNone argocd/repo | kubectl apply -f - 
+
+# Ou sem o kustomize, mas também sem a chave ssh:
+$ k create -f argocd/repos/
+```
+
+```
+# Cria um **application** no Argocd que automaticamente criará Applications para
+# todas as Applications que estiverem no diretório applications!
+# Não entendeu? Talvez você deva frequentar a Live do Twitch!
+$ kubectl -n argocd create -f applications/application-applications.yaml
+```
+
+# GitOps - versão longa
 
 ## ArgoCD
 
@@ -15,6 +44,7 @@ O ArgoCD Core é uma versão simplificada do ArgoCD sem UI,  gerenciamento de us
 ```
 k create namespace argocd
 k -n argocd create -f reference/argocd/install.yaml
+k -n argocd get secret argocd-initial-admin-secret -o json | jq -r '.data.password | @base64d' | clip.exe
 k port-forward svc/argocd-server -n argocd 8080:443
 ```
 

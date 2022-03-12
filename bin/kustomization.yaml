@@ -1,0 +1,13 @@
+namespace: argocd
+secretGenerator:
+- name: repo-gitops-demonstration
+  literals:
+  - url=git@github.com:devsres-com/gitops-demonstration.git 
+  files:
+  - sshPrivateKey=/home/marcelo/.ssh/gitops-deploy-key
+  type: Opaque
+  options:
+    labels:
+      argocd.argoproj.io/secret-type: repository
+generatorOptions:
+  disableNameSuffixHash: true

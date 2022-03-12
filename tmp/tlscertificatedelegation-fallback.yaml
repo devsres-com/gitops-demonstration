@@ -1,0 +1,10 @@
+apiVersion: projectcontour.io/v1
+kind: TLSCertificateDelegation
+metadata:
+  name: fallback-tls
+  namespace: ingress-contour
+spec:
+  delegations:
+    - secretName: ingress 
+      targetNamespaces:
+      - "*"

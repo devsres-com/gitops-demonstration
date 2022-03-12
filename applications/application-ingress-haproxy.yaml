@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-haproxy 
+  namespace: argocd
+spec:
+  destination:
+    namespace: ingress-haproxy
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: haproxy-ingress 
+    repoURL: https://haproxy-ingress.github.io/charts 
+    targetRevision: 0.13.6 
+    helm:
+      parameters:
+      - name: controller.ingressClassResource.enabled
+        value: "true"    
+      - name: controller.ingressClassResource.default
+        value: "true"    
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

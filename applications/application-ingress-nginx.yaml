@@ -17,6 +17,8 @@ spec:
     repoURL: https://kubernetes.github.io/ingress-nginx
     targetRevision: 4.0.16
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
     syncOptions:
     - CreateNamespace=true

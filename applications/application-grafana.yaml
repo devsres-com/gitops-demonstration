@@ -1,19 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-apps
+  name: grafana 
   namespace: argocd
 spec:
   destination:
-    namespace: system-apps
+    namespace: prometheus 
     server: https://kubernetes.default.svc
   project: default
   source:
-    directory:
-      jsonnet: {}
-      recurse: true
-    path: applications/
-    repoURL: https://github.com/devsres-com/gitops-demonstration.git
+    chart: grafana 
+    repoURL:  https://grafana.github.io/helm-charts
+    targetRevision: 6.24.1 
   syncPolicy:
     automated:
       prune: true

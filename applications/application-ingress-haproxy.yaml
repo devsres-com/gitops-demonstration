@@ -12,7 +12,14 @@ spec:
     chart: haproxy-ingress 
     repoURL: https://haproxy-ingress.github.io/charts 
     targetRevision: 0.13.6 
+    helm:
+      values: |
+        controller:
+          ingressClassResource: enabled
+          ingressClassResource: default	
   syncPolicy:
-    automated: {}
+    automated: 
+      prune: true
+      selfHeal: true
     syncOptions:
     - CreateNamespace=true

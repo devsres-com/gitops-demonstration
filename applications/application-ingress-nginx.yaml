@@ -13,7 +13,7 @@ spec:
     helm:
       parameters:
       - name: controller.admissionWebhooks.enabled
-        value: true
+        value: "true"
     repoURL: https://kubernetes.github.io/ingress-nginx
     targetRevision: 4.0.16
   syncPolicy:

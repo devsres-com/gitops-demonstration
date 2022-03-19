@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: ingress-contour
     server: https://kubernetes.default.svc
-  project: default
+  project: system-apps
   source:
     chart: contour 
     repoURL: https://charts.bitnami.com/bitnami 

@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: amazon-cloudwatch
     server: https://kubernetes.default.svc
-  project: default
+  project: system-apps 
   source:
     directory:
       jsonnet: {}

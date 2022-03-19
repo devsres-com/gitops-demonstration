@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: apps-guestbook
     server: https://kubernetes.default.svc
-  project: default
+  project: client-apps-client1 
   source:
     directory:
       jsonnet: {}

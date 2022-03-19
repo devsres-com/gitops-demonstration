@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: ingress-haproxy
     server: https://kubernetes.default.svc
-  project: default
+  project: system-apps
   source:
     chart: haproxy-ingress 
     repoURL: https://haproxy-ingress.github.io/charts 

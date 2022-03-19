@@ -9,7 +9,10 @@ Este repositório é o que eu vou usar para povoar meus clusters EKS das [lives 
 kubectl create namespace argocd 
 kubectl -n argocd create -f argocd
 kubectl -n argocd create -f appprojects
-kubectl -n argocd create -f applications/application-system-apps-common.yaml 
+kubectl -n argocd create -f applications/application-system-apps-common.yaml
+
+# Para AWS:
+kubectl create -f application-system-apps-aws.yaml
 ``` 
 
 * Cadastre este repositório Git no Argocd para fazer o deploy das **Applications**:

@@ -1,0 +1,12 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: client-apps-client2 
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  description: Aplicativos de sistema para o ArgoCD
+  sourceRepos:
+  - https://github.com/devsres-com/gitops-demonstration.git

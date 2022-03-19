@@ -1,22 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-apps-common
+  name: apps-guestbook 
   namespace: argocd
 spec:
   destination:
-    namespace: system-apps
+    namespace: apps-guestbook
     server: https://kubernetes.default.svc
-  project: system-apps 
+  project: default
   source:
     directory:
       jsonnet: {}
       recurse: true
-    path: applications/system-apps/common
+    path: manifests/guestbook
     repoURL: https://github.com/devsres-com/gitops-demonstration.git
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true  
+      selfHeal: true
     syncOptions:
     - CreateNamespace=true

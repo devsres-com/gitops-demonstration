@@ -8,6 +8,8 @@ Este repositório é o que eu vou usar para povoar meus clusters EKS das [lives 
 ```
 kubectl create namespace argocd 
 kubectl -n argocd create -f argocd
+kubectl -n argocd create -f appprojects
+kubectl -n argocd create -f applications/application-system-apps-common.yaml 
 ``` 
 
 * Cadastre este repositório Git no Argocd para fazer o deploy das **Applications**:
@@ -24,7 +26,7 @@ $ k create -f argocd/repos/
 # Cria um **application** no Argocd que automaticamente criará Applications para
 # todas as Applications que estiverem no diretório applications!
 # Não entendeu? Talvez você deva frequentar a Live do Twitch!
-$ kubectl -n argocd create -f applications/application-applications.yaml
+kubectl -n argocd create -f applications/application-applications.yaml
 ```
 
 # GitOps - versão longa
@@ -46,6 +48,7 @@ k create namespace argocd
 k -n argocd create -f reference/argocd/install.yaml
 k -n argocd get secret argocd-initial-admin-secret -o json | jq -r '.data.password | @base64d' | clip.exe
 k port-forward svc/argocd-server -n argocd 8080:443
+k get secret -n prometheus grafana -o json | jq -r '.data."admin-password" | @base64d' | clip.exe
 ```
 
 O ArgoCD cria uma senha inicial no secret **argocd-initial-admin-secret**.
@@ -57,7 +60,7 @@ PASSWORD="$( k -n argocd get secret argocd-initial-admin-secret -o go-template='
 Como aprender a usar o ArgoCD (mas não o jeito de usar o Argocd!)
 
 ```
-argocd app create guestbook --repo https://github.com/devsres-com/gitops-demonstration.git --path argocd/manifests/guestbook/ --dest-namespace argocd-guestbook --sync-option CreateNamespace=true --dest-name in-cluster
+a -la gocd app create guestbook --repo https://github.com/devsres-com/gitops-demonstration.git --path argocd/manifests/guestbook/ --dest-namespace argocd-guestbook --sync-option CreateNamespace=true --dest-name in-cluster
 ```
 
 

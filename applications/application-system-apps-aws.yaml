@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: system-apps-common
+  name: system-apps-aws
   namespace: argocd
 spec:
   destination:
@@ -12,7 +12,7 @@ spec:
     directory:
       jsonnet: {}
       recurse: true
-    path: applications/system-apps/common
+    path: applications/system-apps/aws
     repoURL: https://github.com/devsres-com/gitops-demonstration.git
   syncPolicy:
     automated:

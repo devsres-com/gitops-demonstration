@@ -12,7 +12,7 @@ spec:
     directory:
       jsonnet: {}
       recurse: true
-    path: system-manifests/metrics-server
+    path: manifests/system-apps/common/metrics-server 
     repoURL: https://github.com/devsres-com/gitops-demonstration.git
   syncPolicy:
     automated:

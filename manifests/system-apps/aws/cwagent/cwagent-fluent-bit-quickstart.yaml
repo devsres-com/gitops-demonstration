@@ -1,12 +1,10 @@
-# https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/quickstart/cwagent-fluent-bit-quickstart.yaml
 # create amazon-cloudwatch namespace
-# apiVersion: v1
-# kind: Namespace
-# metadata:
-#   annotations:
-#   name: amazon-cloudwatch
-#   labels:
-#     name: amazon-cloudwatch
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: amazon-cloudwatch
+  labels:
+    name: amazon-cloudwatch
 ---
 
 # create cwagent service account and role binding
@@ -65,7 +63,7 @@ data:
   cwagentconfig.json: |
     {
       "agent": {
-        "region": "us-west-2"
+        "region": "us-east-1"
       },
       "logs": {
         "metrics_collected": {
@@ -178,13 +176,13 @@ spec:
 ---
 
 # create configmap for cluster name and aws region for CloudWatch Logs
-# need to replace the placeholders devsres-lab and us-west-2
+# need to replace the placeholders devsres-lab and us-east-1
 # and need to replace "On" and "2020"
 # and need to replace "Off" and "On"
 apiVersion: v1
 data:
   cluster.name: devsres-lab
-  logs.region: us-west-2
+  logs.region: us-east-1
   http.server: "On"
   http.port: "2020"
   read.head: "Off"

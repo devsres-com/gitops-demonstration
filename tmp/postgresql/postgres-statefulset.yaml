@@ -1,0 +1,78 @@
+---
+# https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#limitations
+# StatefulSets currently require a Headless Service to be responsible for the network identity of the Pods. You are responsible for creating this Service.
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql
+  labels:
+    app: postgresql
+spec:
+  ports:
+  - port: 5432
+    name: postgresql
+  clusterIP: None
+  selector:
+    app: postgresql
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: database-credentials
+stringData:
+  POSTGRES_PASSWORD: z0mgp4ssw0rd
+  POSTGRES_USER: postgres 
+  POSTGRES_DB: postgres
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgresql
+spec:
+  selector:
+    matchLabels:
+      app: postgresql 
+  serviceName: "postgresql"
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: postgresql 
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - env:
+        - name: PGDATA
+          value: "/var/lib/postgresql/data"  
+        - name: POSTGRES_PASSWORD 
+          valueFrom:
+            secretKeyRef:
+              name: database-credentials 
+              key: POSTGRES_PASSWORD 
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: database-credentials 
+              key: POSTGRES_USER 
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: database-credentials 
+              key: POSTGRES_DB
+        name: postgresql
+        image: postgres:14.2
+        ports:
+        - containerPort: 5432
+          name: postgresql
+        volumeMounts:
+        - name: var-lib-postgresql-data
+          mountPath: /var/lib/postgresql/data 
+  volumeClaimTemplates:
+  - metadata:
+      name: postgresql-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      # storageClassName: "my-storage-class"
+      resources:
+        requests:
+          storage: 50Gi

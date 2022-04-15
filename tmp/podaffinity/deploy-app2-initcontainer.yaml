@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app2
+  name: app2
+spec:
+  selector:
+    matchLabels:
+      app: app2
+  template:
+    metadata:
+      labels:
+        app: app2
+    spec:
+      containers:
+      - image: devsres.repo/app2
+        name: app2
+      initContainers:
+      - name: init-myservice
+        image: alpine/curl
+        command: ['sh', '-c', "until curl -s app1:8080 --connect-timeout 5; do echo Cade o app1; sleep 5; done"]

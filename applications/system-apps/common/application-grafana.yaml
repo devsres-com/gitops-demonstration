@@ -11,7 +11,13 @@ spec:
   source:
     chart: grafana 
     repoURL:  https://grafana.github.io/helm-charts
-    targetRevision: 6.24.1 
+    targetRevision: 6.26.0 
+    helm:
+      values: |
+        ingress.enabled: true
+        ingress.hosts: 
+          - grafana.eks.devsres.com
+
   syncPolicy:
     automated:
       prune: true

@@ -2,6 +2,10 @@
 
 Este repositório é o que eu vou usar para povoar meus clusters EKS das [lives do Twitch](https://www.twitch.tv/marcelo_devsres).
 
+# Preparação
+
+Antes do deploy, é necessário criar umas coisinhas.
+
 # GitOps TL;DR
 
 * Instale o Argocd:

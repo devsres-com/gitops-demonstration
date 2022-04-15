@@ -10,6 +10,11 @@ spec:
   description: Aplicativos de sistema para o ArgoCD
   sourceRepos:
   - https://github.com/devsres-com/gitops-demonstration.git
+  - https://charts.bitnami.com/bitnami
+  - https://grafana.github.io/helm-charts
+  - https://haproxy-ingress.github.io/charts
+  - https://kubernetes.github.io/ingress-nginx
+  - https://prometheus-community.github.io/helm-charts
   destinations:
   - name: '*'
     namespace: '*'

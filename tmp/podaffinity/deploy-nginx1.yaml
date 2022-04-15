@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx1
+  name: nginx1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx1
+  template:
+    metadata:
+      labels:
+        app: nginx1
+    spec:
+      nodeSelector:
+        label: tcu
+      containers:
+      - image: nginx
+        name: nginx

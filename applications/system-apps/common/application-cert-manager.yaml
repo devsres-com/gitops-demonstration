@@ -10,7 +10,7 @@ spec:
   project: system-apps
   source:
     chart: cert-manager 
-    repoURL: https://charts.jetstack.io/ 
+    repoURL: https://charts.jetstack.io 
     targetRevision: 1.8.0 
     helm:
       values: |

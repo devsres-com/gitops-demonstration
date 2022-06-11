@@ -7,6 +7,6 @@ spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
-  description: Aplicativos de sistema para o ArgoCD
+  description: Aplicativos do client 2
   sourceRepos:
   - https://github.com/devsres-com/gitops-demonstration.git

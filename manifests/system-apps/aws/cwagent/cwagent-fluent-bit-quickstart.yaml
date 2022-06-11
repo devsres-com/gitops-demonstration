@@ -13,7 +13,7 @@ metadata:
   name: cloudwatch-agent
   namespace: amazon-cloudwatch
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::301243989709:role/DevSresEKS_cwagent
+    eks.amazonaws.com/role-arn: arn:aws:iam::248393754086:role/DevSresEKS_cwagent
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -193,7 +193,7 @@ metadata:
   name: fluent-bit
   namespace: amazon-cloudwatch
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::301243989709:role/DevSresEKS_cwagent
+    eks.amazonaws.com/role-arn: arn:aws:iam::248393754086:role/DevSresEKS_cwagent
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
